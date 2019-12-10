@@ -6,8 +6,9 @@ class Note < ApplicationRecord
 
   validates :message, presence: true
 
+  # LOWERはmessageカラムの文字列を全て小文字にする
   scope :search, ->(term) {
-    where("LOWER(message) LIKE ?", "%#{term.downcase}%")
+    where("LOWER(message) Like ?", "%#{term.downcase}%")
   }
 
   has_attached_file :attachment
